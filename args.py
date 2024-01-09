@@ -1,29 +1,34 @@
 from easydict import EasyDict as edict
 
+data_args = edict()
+
+data_args.ticker = 'BTC/USDT'# dataset
+data_args.timeframe = '1h'#dataset
+data_args.start_date = (2020,10,1,10) #dataset
+data_args.finish_date = (2022,10,1,10) #dataset
+
+data_args.x_frames = 100 #dataset
+data_args.y_frames = 5 #dataset
+
+data_args.high_lim = 1.03 #datset
+data_args.low_lim = 0.97 #dataset
+
+data_args.train_vs_validation_ratio = 0.7
+data_args.batch_size = 100 #dataset
+data_args.replacement = True
+
 args = edict()
 
-args.ticker = 'BTC/USDT'
-args.high_lim = 1.03
-args.low_lim = 0.99
+args.nhid_tran = 32 #model
+args.nhead = 8 #model
+args.nlayers_transformer = 3 #model
+args.attn_pdrop = 0.1 #model
+args.resid_pdrop = 0.1 #model
+args.embd_pdrop = 0.1 #model
+args.nff = 4 * args.nhid_tran #model
 
-args.train_start_date = (2019,1,1,10) 
-args.train_finish_date = (2022,1,1,10)
+args.epoch = 5
 
-args.test_start_date = (2022,1,1,11)
-args.test_finish_date = (2023,1,1,10)
-
-args.nhid_tran = 256
-args.nhead = 8
-args.nlayers_transformer = 6
-args.attn_pdrop = 0.1
-args.resid_pdrop = 0.1
-args.embd_pdrop = 0.1
-args.nff = 4 * args.nhid_tran
-
-args.x_frames = 20
-args.y_frames = 4
-args.batch_size = 100
-
-args.gpu = False
+args.gpu = True
 
 args.lr_transformer = 0.0001

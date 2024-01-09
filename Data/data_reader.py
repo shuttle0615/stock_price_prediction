@@ -79,7 +79,7 @@ def Data_reader(symbol, timeframe, start, end):
   #save the cache
   df.to_csv(cache_dir / (name + '.csv'), encoding='utf-8')
 
-  return df
+  return df, name
 
 
 
