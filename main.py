@@ -6,8 +6,8 @@ from args import args
 import torch
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
-from Model import TransformerEncoder
-from dataset import StockDataset
+from Model.Model import TransformerEncoder
+from Data.data_set import StockDataset
 
 
 # data loader

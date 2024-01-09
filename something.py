@@ -1,18 +1,5 @@
-import ccxt
-from datetime import datetime
-import pandas as pd
-import numpy as np
-from pathlib import Path
+from Data.data_reader import Data_reader
 
-import os
+pdf = Data_reader('BTC/USDT', '1h', (2020, 1, 1, 10), (2021, 1, 1, 10))
 
-import torch
-import torch.nn as nn
-from torch.utils.data import Dataset, DataLoader, WeightedRandomSampler
-import torch.optim as optim
-import pandas as pd
-from datetime import datetime
-
-device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
-
-print(device)
+print(pdf)
