@@ -1,6 +1,6 @@
 from Data import *
 
-def preprocess(df, name, x_frames, y_frames, revenue, loss):
+def Data_preprocess(df, name, x_frames, y_frames, revenue, loss):
 
   #check cache
   if os.path.exists(cache_dir / (name + '_processed.csv')):
