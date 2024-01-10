@@ -17,18 +17,17 @@ data_args.train_vs_validation_ratio = 0.7
 data_args.batch_size = 100 #dataset
 data_args.replacement = True
 
-args = edict()
+model_args = edict()
 
-args.nhid_tran = 32 #model
-args.nhead = 8 #model
-args.nlayers_transformer = 3 #model
-args.attn_pdrop = 0.1 #model
-args.resid_pdrop = 0.1 #model
-args.embd_pdrop = 0.1 #model
-args.nff = 4 * args.nhid_tran #model
+model_args.nhid_tran = 32 #model
+model_args.nhead = 8 #model
+model_args.nlayers_transformer = 3 #model
+model_args.attn_pdrop = 0.1 #model
+model_args.resid_pdrop = 0.1 #model
+model_args.embd_pdrop = 0.1 #model
+model_args.nff = 4 * model_args.nhid_tran #model
 
-args.epoch = 5
+train_args = edict()
 
-args.gpu = True
-
-args.lr_transformer = 0.0001
+train_args.epoch = 5
+train_args.lr = 0.0001

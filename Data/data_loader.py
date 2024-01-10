@@ -9,10 +9,11 @@ def Data_loader(data_args):
     new_df = Data_preprocess(df, name, data_args.x_frames, data_args.y_frames, data_args.high_lim, data_args.low_lim)
     
     # seperate train and validation
-    idx = int(len(new_df) * data_args.train_vs_validation_ratio)
+    last = len(new_df)
+    idx = int(last * data_args.train_vs_validation_ratio)
     
-    train = new_df[:idx]
-    validation = new_df[idx:]
+    train = new_df.iloc[0:idx]
+    validation = new_df.iloc[idx:last]
     
     # create dataset
     train_set = StockDataset(train)
@@ -24,6 +25,6 @@ def Data_loader(data_args):
     
     # create Dataloader 
     train_dataloader = DataLoader(train_set, batch_size=data_args.batch_size, sampler=train_sampler) 
-    test_dataloader = DataLoader(validation_set, batch_size=data_args.batch_size, sampler=validation_sampler) 
+    validation_dataloader = DataLoader(validation_set, batch_size=data_args.batch_size, sampler=validation_sampler) 
     
-    return train_dataloader, test_dataloader
+    return train_dataloader, validation_dataloader

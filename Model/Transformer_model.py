@@ -4,7 +4,7 @@ class MaskedMultiheadAttention(nn.Module):
     """
     A vanilla multi-head masked attention layer with a projection at the end.
     """
-    def __init__(self, mask=False):
+    def __init__(self, args, mask=False):
         super(MaskedMultiheadAttention, self).__init__()
         assert args.nhid_tran % args.nhead == 0
         # mask : whether to use
@@ -70,11 +70,11 @@ class MaskedMultiheadAttention(nn.Module):
 
 
 class TransformerEncLayer(nn.Module):
-    def __init__(self):
+    def __init__(self, args):
         super(TransformerEncLayer, self).__init__()
         self.ln1 = nn.LayerNorm(args.nhid_tran)
         self.ln2 = nn.LayerNorm(args.nhid_tran)
-        self.attn = MaskedMultiheadAttention()
+        self.attn = MaskedMultiheadAttention(args)
         self.dropout1 = nn.Dropout(args.resid_pdrop)
         self.dropout2 = nn.Dropout(args.resid_pdrop)
         self.ff = nn.Sequential(
@@ -93,7 +93,7 @@ class TransformerEncLayer(nn.Module):
         return output
     
 class PositionalEncoding(nn.Module):
-    def __init__(self, max_len=4096):
+    def __init__(self, args, max_len=4096):
         super().__init__()
         dim = args.nhid_tran
         pos = np.arange(0, max_len)[:, None]
@@ -113,14 +113,15 @@ class PositionalEncoding(nn.Module):
 
 class TransformerEncoder(nn.Module):
 
-    def __init__(self):
+    def __init__(self, args):
         super(TransformerEncoder, self).__init__()
         # input embedding stem
         self.tok_emb = nn.Linear(5, args.nhid_tran) #ohlev encoding
-        self.pos_enc = PositionalEncoding()
+        self.pos_enc = PositionalEncoding(args)
         self.dropout = nn.Dropout(args.embd_pdrop)
         # transformer
-        self.transform = nn.ModuleList([TransformerEncLayer() for _ in range(args.nlayers_transformer)])
+        self.nlayers_transformer = args.nlayers_transformer
+        self.transform = nn.ModuleList([TransformerEncLayer(args) for _ in range(args.nlayers_transformer)])
         # decoder head
         self.ln_f = nn.LayerNorm(args.nhid_tran)
         self.classifier_head = nn.Sequential(
@@ -140,7 +141,7 @@ class TransformerEncoder(nn.Module):
         output = self.pos_enc(output)
         output = self.dropout(output)
 
-        for i in range(args.nlayers_transformer):
+        for i in range(self.nlayers_transformer):
           output = self.transform[i](output, mask=mask)
 
         output = self.ln_f(output)

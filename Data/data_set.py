@@ -20,7 +20,7 @@ class StockDataset(Dataset):
       else:
         self.all_X = [eval(i) for i in li]
         
-      self.all_y = self.data["label"].apply(self.__vectorize__)
+      self.all_y = self.data["label"].apply(self.__vectorize__).values.tolist()
 
     def __len__(self):
         return len(self.data)
