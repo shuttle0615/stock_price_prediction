@@ -2,3 +2,5 @@ cache/
 __pycache__/
 Datareader/__pycache__/
 Datareader/binance/__pycache__/
+
+debug.py
