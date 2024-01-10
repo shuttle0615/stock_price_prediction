@@ -1,9 +1,10 @@
 from Train import *
 
 class experiment():
-    def __init__(self, train_dl, validation_dl, model, train_args):
+    def __init__(self, train_dl, validation_dl, test_dl, model, train_args):
         self.train_dataloader = train_dl
         self.validation_dataloader = validation_dl
+        self.test_dataloader = test_dl
         
         self.model = model
         
@@ -11,8 +12,8 @@ class experiment():
         self.loss_fn = torch.nn.CrossEntropyLoss()
         self.optimizer = torch.optim.Adam(self.model.parameters(), self.train_args.lr)
         self.scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(self.optimizer, mode='min',
-            factor=0.25, patience=1, threshold=0.0001, threshold_mode='rel',
-            cooldown=0, min_lr=0, eps=1e-07, verbose=False)
+            factor=0.1, patience=1, threshold=0.001, threshold_mode='rel',
+            cooldown=0, min_lr=0, eps=1e-07, verbose=True)
         
         self.name = f'{self.train_args.epoch}_{self.train_args.lr}_best_model.ckpt'
     

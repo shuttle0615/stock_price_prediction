@@ -27,7 +27,11 @@ model_args.resid_pdrop = 0.1 #model
 model_args.embd_pdrop = 0.1 #model
 model_args.nff = 4 * model_args.nhid_tran #model
 
-train_args = edict()
+train_args = []
+lr = [0.001, 0.0005, 0.0001, 0.00005, 0.00001]
 
-train_args.epoch = 20
-train_args.lr = 0.0001
+for i in lr:
+    temp = edict()
+    temp.epoch = 10
+    temp.lr = i
+    train_args.append(temp)
