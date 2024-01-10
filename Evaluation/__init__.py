@@ -32,9 +32,7 @@ def predictor(exp, model, test) :
                 voutput = 1
 
             l_voutput.append(voutput)
-            l_vlabel.append(vlabel[0].reshape((3,)))
-            print(vlabel[0])
-            break
+            l_vlabel.append(vlabel.argmax().item())
 
     return l_voutput, l_vlabel
         

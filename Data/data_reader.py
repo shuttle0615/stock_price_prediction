@@ -11,19 +11,9 @@ def Data_reader(symbol, timeframe, start, end):
     return pd.read_csv(cache_dir / (name + '.csv')), name
 
   # if cache does not exist, access to binance
-  api_key = '8kIy2WSUoCHOpASOP06kgzD1UM6eCcWTcpl3EYnDTYySyCUyNeMkhjk2n6mV231V'
-  api_secret = 'l2o7iBULf0Xe3a7m5ibI2YkUHAYnfdb3FxY6BzSEPZZwCyCg1JRf286a4jAFLNP6'
 
   # create binance object
-  binance = ccxt.binance(config={
-    'options': {
-        'defaultType': 'future' 
-    },
-    'apiKey': api_key,
-    'secret': api_secret,
-    'enableRateLimit': True,
-    'recvWindow': 10000000
-  })  
+  binance = ccxt.binance()  
 
   # process starting time
   startTime = datetime(*start)

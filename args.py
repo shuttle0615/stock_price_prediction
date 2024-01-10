@@ -13,7 +13,7 @@ data_args.y_frames = 5 #dataset
 data_args.high_lim = 1.03 #datset
 data_args.low_lim = 0.97 #dataset
 
-data_args.train_vs_validation_ratio = 0.7
+data_args.data_ratio = [0.7, 0.9]
 data_args.batch_size = 100 #dataset
 data_args.replacement = True
 

@@ -11,7 +11,7 @@ def Data_loader(data_args):
     # seperate train and validation
     last = len(new_df)
     idx1 = int(last * data_args.data_ratio[0])
-    idx2 = int(last * data_args.data_ratio[0])
+    idx2 = int(last * data_args.data_ratio[1])
     
     train = new_df.iloc[0:idx1]
     validation = new_df.iloc[idx1:idx2]
