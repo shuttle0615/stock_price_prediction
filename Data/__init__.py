@@ -12,7 +12,7 @@ from torch.utils.data import Dataset, DataLoader, WeightedRandomSampler
 
 device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
-root = '/home/kyuholee/stock_price_prediction'
+root = '/home/kyuholee/stock_price_prediction' #'/home/KyuhoLee/pytorch_tutorial/Stock_prediction_project' 
 
 cache_dir = Path(root) / 'cache'
 cache_dir.mkdir(parents=True, exist_ok=True)

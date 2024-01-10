@@ -13,7 +13,13 @@ class StockDataset(Dataset):
 
     def __init__(self, df):
       self.data = df
-      self.all_X = [eval(i) for i in self.data["X"].values.tolist()]
+      
+      li = self.data["X"].values.tolist()
+      if type(li[0]) is list :
+        self.all_X = li
+      else:
+        self.all_X = [eval(i) for i in li]
+        
       self.all_y = self.data["label"].apply(self.__vectorize__)
 
     def __len__(self):
