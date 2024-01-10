@@ -5,7 +5,7 @@ data_args = edict()
 data_args.ticker = 'BTC/USDT'# dataset
 data_args.timeframe = '1h'#dataset
 data_args.start_date = (2020,10,1,10) #dataset
-data_args.finish_date = (2022,10,1,10) #dataset
+data_args.finish_date = (2023,10,1,10) #dataset
 
 data_args.x_frames = 100 #dataset
 data_args.y_frames = 5 #dataset
@@ -29,5 +29,5 @@ model_args.nff = 4 * model_args.nhid_tran #model
 
 train_args = edict()
 
-train_args.epoch = 5
+train_args.epoch = 20
 train_args.lr = 0.0001

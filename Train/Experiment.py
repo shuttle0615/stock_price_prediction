@@ -14,7 +14,7 @@ class experiment():
             factor=0.25, patience=1, threshold=0.0001, threshold_mode='rel',
             cooldown=0, min_lr=0, eps=1e-07, verbose=False)
         
-        self.name = f'{self.train_args.epoch}_{self.train_args.lr}_'
+        self.name = f'{self.train_args.epoch}_{self.train_args.lr}_best_model.ckpt'
     
     def run_exp(self): 
         # v_loss setting
@@ -34,7 +34,7 @@ class experiment():
 
             if avg_v_loss < best_vloss:
                 best_vloss = avg_v_loss
-                torch.save(self.model.state_dict(),  result_dir / (self.name + 'best_model.ckpt'))
+                torch.save(self.model.state_dict(),  result_dir / self.name)
 
             self.scheduler.step(avg_v_loss)
                 
