@@ -1,10 +1,9 @@
 from Train import *
 
 class experiment():
-    def __init__(self, train_dl, validation_dl, test_dl, model, train_args):
+    def __init__(self, train_dl, validation_dl, model, train_args):
         self.train_dataloader = train_dl
         self.validation_dataloader = validation_dl
-        self.test_dataloader = test_dl
         
         self.model = model
         
