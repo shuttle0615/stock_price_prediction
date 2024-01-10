@@ -77,7 +77,7 @@ def Data_reader(symbol, timeframe, start, end):
   df.set_index('Time', inplace=True)
   
   #save the cache
-  df.to_csv(cache_dir / (name + '.csv'), encoding='utf-8')
+  df.to_csv(cache_dir / (name + '.csv'), encoding='utf-8', index=False)
 
   return df, name
 
