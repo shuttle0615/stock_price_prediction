@@ -3,12 +3,12 @@ from easydict import EasyDict as edict
 data_args = edict()
 
 data_args.ticker = 'BTC/USDT'# dataset
-data_args.timeframe = '30m'#dataset
+data_args.timeframe = '1h'#dataset
 data_args.start_date = (2020,10,1,10) #dataset
 data_args.finish_date = (2023,10,1,10) #dataset
 
-data_args.x_frames = 20 #dataset
-data_args.y_frames = 5 #dataset
+data_args.x_frames = 50 #dataset
+data_args.y_frames = 1 #dataset
 
 data_args.high_lim = 1.015 #datset
 data_args.low_lim = 0.985 #dataset

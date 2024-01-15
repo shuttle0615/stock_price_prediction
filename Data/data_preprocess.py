@@ -33,7 +33,7 @@ def Data_preprocess(df, name, x_frames, y_frames, revenue, loss):
 
   #process data
   for idx in range(x_frames, x_frames + l):
-    data = df.iloc[idx-x_frames:idx+y_frames]
+    data = df.iloc[idx-x_frames:idx+y_frames].copy(deep=True)
     data = data[['High', 'Low', 'Open', 'Close', 'Volume']]
     data = data.apply(lambda x: (x+1) / (x.iloc[x_frames-1]+1) )
     data = data.values
